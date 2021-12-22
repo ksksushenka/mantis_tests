@@ -12,13 +12,13 @@ namespace mantis_tests
     public class LoginHelper : HelperBase
     {
         public LoginHelper(ApplicationManager manager) : base(manager) { }
-        public void Login()
+        public void Login(AccountData account)
         {
             driver.FindElement(By.Id("username")).Clear();
-            driver.FindElement(By.Id("username")).SendKeys("administrator");
+            driver.FindElement(By.Id("username")).SendKeys(account.Username);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
             driver.FindElement(By.Id("password")).Clear();
-            driver.FindElement(By.Id("password")).SendKeys("root");
+            driver.FindElement(By.Id("password")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
         public void Logout()

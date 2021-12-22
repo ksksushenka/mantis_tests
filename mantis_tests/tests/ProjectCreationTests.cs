@@ -15,17 +15,17 @@ namespace mantis_tests
     [TestFixture]
     public class ProjectCreationTests : AuthTestBase
     {
-
         [Test]
         public void ProjectCreationTest()
         {
+            AccountData account = new AccountData("administrator", "root");
             ProjectData project = new ProjectData("Test_Project");
 
-            List<ProjectData> oldProjects = app.Projects.GetProjectsList();
+            List<ProjectData> oldProjects = app.API.GetProjectsList(account);
 
             app.Projects.Create(project);
 
-            List<ProjectData> newProjects = app.Projects.GetProjectsList();
+            List<ProjectData> newProjects = app.API.GetProjectsList(account);
             oldProjects.Add(project);
             oldProjects.Sort();
             newProjects.Sort();
